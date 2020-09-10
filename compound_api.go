@@ -59,3 +59,11 @@ type Request struct {
 	Meta           bool          `json:"meta"`
 	Network        string        `json:"network"`
 }
+
+type Request2 struct {
+	Addresses      []interface{} `json:"addresses"`
+	BlockNumber    int64         `json:"block_number"`
+	BlockTimestamp int64         `json:"block_timestamp"`
+	Meta           bool          `json:"meta"`
+	Network        string        `json:"network"`
+}
