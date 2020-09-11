@@ -1,12 +1,17 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"strconv"
+)
+
 // To parse and unparse this JSON data, add this code to your project and do:
 //
 //    compound, err := UnmarshalCompound(bytes)
 //    bytes, err = compound.Marshal()
-
-package main
-
-import "encoding/json"
-
 func UnmarshalCompound(data []byte) (Compound, error) {
 	var r Compound
 	err := json.Unmarshal(data, &r)
@@ -60,10 +65,19 @@ type Request struct {
 	Network        string        `json:"network"`
 }
 
-type Request2 struct {
-	Addresses      []interface{} `json:"addresses"`
-	BlockNumber    int64         `json:"block_number"`
-	BlockTimestamp int64         `json:"block_timestamp"`
-	Meta           bool          `json:"meta"`
-	Network        string        `json:"network"`
+func main() {
+	response, _ := http.Get("https://api.compound.finance/api/v2/ctoken")
+	body, _ := ioutil.ReadAll(response.Body)
+	resp, _ := UnmarshalCompound(body)
+	fmt.Println("Compound % APR API")
+	for _, token := range resp.CToken {
+		fmt.Println("---------------------------")
+		fmt.Println(token.Symbol)
+		lendRate, _ := strconv.ParseFloat(token.SupplyRate.Value, 64)
+		borrowRate, _ := strconv.ParseFloat(token.BorrowRate.Value, 64)
+		lendRate *= 100
+		borrowRate *= 100
+		fmt.Println("Lend Rate",lendRate,"%")
+		fmt.Println("Borrow Rate: ",borrowRate,"%")
+	}
 }
