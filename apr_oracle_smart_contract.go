@@ -123,7 +123,7 @@ func main() {
 	//Storing apr rates
 	aprStore := Apr{}
 	// Ethereum client connector
-	client, err := ethclient.Dial("https://mainnet.infura.io/v3/e15b0a66457d4800b2ee7f62d46f0b3e")
+	client, err := ethclient.Dial("https://mainnet.infura.io/v3/928905f152fe4546b37cc136336fda96")
 	if err != nil {
 		log.Fatal(err)
 	}
