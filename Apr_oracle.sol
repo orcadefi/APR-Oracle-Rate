@@ -66,7 +66,7 @@ contract APROracle {
     function getLendCompoundAPR(address token) public view returns (uint256) {
         return Compound(token).supplyRatePerBlock().mul(2102400);
     }
-    function getBorrowAPR(address token) public view returns (uint256) {
+    function getBorrowCompoundAPR(address token) public view returns (uint256) {
         return Compound(token).borrowRatePerBlock().mul(2102400);
     }
     function getLendFulcrumAPR(address token) public view returns(uint256) {
