@@ -85,8 +85,8 @@ type ApreTransactorRaw struct {
 	Contract *ApreTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewApre creates a new instance of Apre, bound to a specific deployed contract.
-func NewApre(address common.Address, backend bind.ContractBackend) (*Apre, error) {
+// NewAprCustom creates a new instance of Apre, bound to a specific deployed contract.
+func NewAprCustom(address common.Address, backend bind.ContractBackend) (*Apre, error) {
 	contract, err := bindApre(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
