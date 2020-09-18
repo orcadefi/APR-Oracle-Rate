@@ -21,14 +21,14 @@ func UnmarshalCompound(data []byte) (Compound, error) {
 func (r *Compound) Marshal() ([]byte, error) {
 	return json.Marshal(r)
 }
-
+//Store all the response API data
 type Compound struct {
 	CToken  []CToken    `json:"cToken"`
 	Error   interface{} `json:"error"`
 	Meta    interface{} `json:"meta"`
 	Request Request     `json:"request"`
 }
-
+//Store all the CToken data (lend/borrow)
 type CToken struct {
 	BorrowRate               BorrowRate `json:"borrow_rate"`
 	Cash                     BorrowRate `json:"cash"`
@@ -52,11 +52,11 @@ type CToken struct {
 	UnderlyingPrice          BorrowRate `json:"underlying_price"`
 	UnderlyingSymbol         string     `json:"underlying_symbol"`
 }
-
+//Store the value of Borrow/Lend data
 type BorrowRate struct {
 	Value string `json:"value"`
 }
-
+//Store the request data
 type Request struct {
 	Addresses      []interface{} `json:"addresses"`
 	BlockNumber    int64         `json:"block_number"`
@@ -66,17 +66,24 @@ type Request struct {
 }
 
 func main() {
+	//Request the lend and borrow data with a Post method to the Compound API
 	response, _ := http.Get("https://api.compound.finance/api/v2/ctoken")
+	//Convert the response to readable format
 	body, _ := ioutil.ReadAll(response.Body)
+	//Convert Json to Struct
 	resp, _ := UnmarshalCompound(body)
+	//Print the collected data
 	fmt.Println("Compound % APR API")
 	for _, token := range resp.CToken {
 		fmt.Println("---------------------------")
 		fmt.Println(token.Symbol)
+		//Convert to float for generate decimal format
 		lendRate, _ := strconv.ParseFloat(token.SupplyRate.Value, 64)
 		borrowRate, _ := strconv.ParseFloat(token.BorrowRate.Value, 64)
+		//Convert to decimal format (Lend/Borrow)
 		lendRate *= 100
 		borrowRate *= 100
+		//Print data in % format
 		fmt.Println("Lend Rate",lendRate,"%")
 		fmt.Println("Borrow Rate: ",borrowRate,"%")
 	}

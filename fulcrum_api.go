@@ -20,12 +20,12 @@ func UnmarshalFulcrum(data []byte) (Fulcrum, error) {
 func (r *Fulcrum) Marshal() ([]byte, error) {
 	return json.Marshal(r)
 }
-
+//Store the response data
 type Fulcrum struct {
 	Data    Data `json:"data"`
 	Success bool `json:"success"`
 }
-
+//Store each coin lend/borrow data
 type Data struct {
 	Eth   string `json:"eth"`
 	Usdc  string `json:"usdc"`
@@ -34,7 +34,7 @@ type Data struct {
 	Link  string `json:"link"`
 	Dai   string `json:"dai"`
 	Usdt  string `json:"usdt"`
-	Borrow  string `json:"Borrow"`
+	Lend  string `json:"lend"`
 	Mkr   string `json:"mkr"`
 	Bzrx  string `json:"bzrx"`
 	Yfi   string `json:"yfi"`
@@ -42,15 +42,16 @@ type Data struct {
 }
 
 func main() {
-	Borrow, _ := http.Get("https://api.bzx.network/v1/supply-rate-apr")
-	Lend, _ := http.Get("https://api.bzx.network/v1/Lend-rate-apr")
-
-	lendbody, _ := ioutil.ReadAll(Borrow.Body)
-	borrowbody, _ := ioutil.ReadAll(Lend.Body)
-
+	//Request the lend and borrow data with a Post method to the Fulcrum API
+	lend, _ := http.Get("https://api.bzx.network/v1/supply-rate-apr")
+	borrow, _ := http.Get("https://api.bzx.network/v1/borrow-rate-apr")
+	//Convert the response to readable format
+	lendbody, _ := ioutil.ReadAll(lend.Body)
+	borrowbody, _ := ioutil.ReadAll(borrow.Body)
+	//Convert Json to Struct
 	lendresp, _ := UnmarshalFulcrum(lendbody)
 	borrowresp, _ := UnmarshalFulcrum(borrowbody)
-
+	//Print the collected data
 	fmt.Println("Fulcrum % APR API")
 	fmt.Println("---------------------------")
 	fmt.Println("ETH")
@@ -81,9 +82,9 @@ func main() {
 	fmt.Println("Lend Rate: ",lendresp.Data.Usdt,"%")
 	fmt.Println("Borrow Rate",borrowresp.Data.Usdt,"%")
 	fmt.Println("---------------------------")
-	fmt.Println("Borrow")
-	fmt.Println("Lend Rate: ",lendresp.Data.Borrow,"%")
-	fmt.Println("Borrow Rate",borrowresp.Data.Borrow,"%")
+	fmt.Println("Lend")
+	fmt.Println("Lend Rate: ",lendresp.Data.Lend,"%")
+	fmt.Println("Borrow Rate",borrowresp.Data.Lend,"%")
 	fmt.Println("---------------------------")
 	fmt.Println("Mkr")
 	fmt.Println("Lend Rate: ",lendresp.Data.Mkr,"%")
