@@ -16,7 +16,7 @@ func main() {
 		log.Fatal(err)
 	}
 	// Contract address (APR ORACLE)
-	address := common.HexToAddress("")
+	address := common.HexToAddress("0xc08...1FAdAe584")
 	//Instance connection to Smart Contract
 	instance, err := apr.NewAprCustom(address, client)
 	if err != nil {
@@ -25,10 +25,7 @@ func main() {
 
 	for true {
 		//Get normal pairs data
-		fmt.Print(instance.GetLendAaveAPR(nil,common.HexToAddress(USDT)))
-		fmt.Println(instance.GetBorrowAaveAPR(nil,common.HexToAddress(USDT)))
-		fmt.Println(instance.GetLendCompoundAPR(nil,common.HexToAddress(USDT)))
-		fmt.Println(instance.GetBorrowAPR(nil,common.HexToAddress(USDT)))
+		fmt.Println(instance.GetBorrowAaveAPR(nil,common.HexToAddress("0x71010a9d003445ac60c4e6a7017c1e89a477b438")))
 	}
 	//fmt.Println("contract is loaded")
 	_ = instance
