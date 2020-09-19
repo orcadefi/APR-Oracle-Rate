@@ -75,7 +75,7 @@ cd APR-Oracle-Rate
 
 Get data of the DeFI pair rates of each platform:
 
-####API
+#### API
 
 Aave:
 ```bash
@@ -97,7 +97,7 @@ Fulcrum:
 go run fulcrum_api.go
 ```
 
-####Example output
+#### Example output
 ```
    Dydx % APR API
    ---------------------------
@@ -121,13 +121,13 @@ go run fulcrum_api.go
 
 ```
 
-####Smart Contract
+#### Smart Contract
 All platforms:
 ```bash
 go run apr_oracle_smart_contract.go
 ```
 
-####Example output
+#### Example output
 ```
    % APR Lending Rate
    Aave:
