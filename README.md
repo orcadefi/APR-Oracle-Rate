@@ -122,27 +122,34 @@ go run fulcrum_api.go
 ```
 
 #### Smart Contract
-All platforms:
+All platforms (Only Lend data and some pairs):
 ```bash
 go run apr_oracle_smart_contract.go
 ```
 
+All platforms (Lend/Borrow):
+```bash
+go run apr_oracle_custom_smart_contract.go
+```
+
 #### Example output
 ```
-   % APR Lending Rate
-   Aave:
-   ABAT: 22132134023949084
-   ADAI: 299276540560146987
-   AETH: 13672812867432560
-   AKNC: 70066385857411234
-   ALINK: 2008293004005908
-   AREP: 213856676943092
-   ASNX: 5210520108752593
-   ASUSD: 3344101109887360
-   ATUSD: 2977567471409835
-   AUSDC: 34627109141419945
-   AUSDT: 17114076855615664
-   AZRX: 111938687161188
+   Aave Platform Lend/Borrow
+   ABAT
+   733411039147732
+   5963026150844428
+   ADAI
+   30411433388962662
+   53389709338899109
+   AETH
+   13140628688712371
+   33636230041130821
+   AKNC
+   4261491725355918
+   11412548441584914
+   ALEND
+   268913486904
+   114243701253093
 ```
 
 ## Contributing

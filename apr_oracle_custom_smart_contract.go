@@ -12,7 +12,7 @@ import (
 func main() {
 	//Storing apr rates
 	// Ethereum client connector
-	client, err := ethclient.Dial("https://mainnet.infura.io/v3/928905f152fe4546b37cc136336fda96")
+	client, err := ethclient.Dial("https://mainnet.infura.io/v3/...")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,7 +27,7 @@ func main() {
 	for true {
 		//Get normal pairs data
 		fmt.Println("Aave Platform Lend/Borrow")
-
+		//Print Aave data Lend/Borrow
 		fmt.Println("ABAT")
 		fmt.Println(instance.GetLendAaveAPR(nil,common.HexToAddress("0x0d8775f648430679a709e98d2b0cb6250d2887ef")))
 		fmt.Println(instance.GetBorrowAaveAPR(nil,common.HexToAddress("0x0d8775f648430679a709e98d2b0cb6250d2887ef")))
@@ -76,7 +76,7 @@ func main() {
 		fmt.Println("AZRX")
 		fmt.Println(instance.GetLendAaveAPR(nil,common.HexToAddress("0xe41d2489571d322189246dafa5ebde1f4699f498")))
 		fmt.Println(instance.GetBorrowAaveAPR(nil,common.HexToAddress("0xe41d2489571d322189246dafa5ebde1f4699f498")))
-
+		//Print Compound data Lend/Borrow
 		fmt.Println("Compound Platform Lend/Borrow")
 
 		fmt.Println("CBAT")
@@ -103,19 +103,22 @@ func main() {
 		fmt.Println("CZRX")
 		fmt.Println(instance.GetLendCompoundAPR(nil,common.HexToAddress("0xb3319f5d18bc0d84dd1b4825dcde5d5f7266d407")))
 		fmt.Println(instance.GetBorrowCompoundAPR(nil,common.HexToAddress("0xb3319f5d18bc0d84dd1b4825dcde5d5f7266d407")))
-
+		//Print Dydx data Lend/Borrow
 		fmt.Println("Dydx Platform Lend/Borrow")
 
-		fmt.Println("0")
+		fmt.Println("DWETH")
 		fmt.Println(instance.GetLendDyDxAPR(nil,big.NewInt(0) ))
 		fmt.Println(instance.GetBorrowDyDxAPR(nil,big.NewInt(0)))
-		fmt.Println("2")
-		fmt.Println(instance.GetLendDyDxAPR(nil,big.NewInt(0) ))
-		fmt.Println(instance.GetBorrowDyDxAPR(nil,big.NewInt(0)))
-		fmt.Println("3")
-		fmt.Println(instance.GetLendDyDxAPR(nil,big.NewInt(0) ))
-		fmt.Println(instance.GetBorrowDyDxAPR(nil,big.NewInt(0)))
-
+		fmt.Println("DSAI")
+		fmt.Println(instance.GetLendDyDxAPR(nil,big.NewInt(1) ))
+		fmt.Println(instance.GetBorrowDyDxAPR(nil,big.NewInt(1)))
+		fmt.Println("DUSDC")
+		fmt.Println(instance.GetLendDyDxAPR(nil,big.NewInt(2) ))
+		fmt.Println(instance.GetBorrowDyDxAPR(nil,big.NewInt(2)))
+		fmt.Println("DDAI")
+		fmt.Println(instance.GetLendDyDxAPR(nil,big.NewInt(3) ))
+		fmt.Println(instance.GetBorrowDyDxAPR(nil,big.NewInt(3)))
+		//Print Dydx data Lend/Borrow
 		fmt.Println("Fulcrum Platform Lend/Borrow")
 
 		fmt.Println("iETH")
@@ -152,7 +155,7 @@ func main() {
 		fmt.Println(instance.GetLendFulcrumAPR(nil,common.HexToAddress("0x687642347a9282Be8FD809d8309910A3f984Ac5a") ))
 		fmt.Println(instance.GetBorrowFulcrumAPR(nil,common.HexToAddress("0x687642347a9282Be8FD809d8309910A3f984Ac5a")))
 
-
+		//Break the infinite cycle
 		break
 	}
 	//fmt.Print("contract is loaded")
